@@ -5,9 +5,9 @@
   - 예: ["ec2", "rds"]
 
 ## 2. Terraform 실행
-terraform init   # provider 다운로드
-terraform plan   # 적용될 리소스 미리 확인
-terraform apply -auto-approve  # New Relic에 배포
+terraform init   # provider 다운로드  
+terraform plan   # 적용될 리소스 미리 확인  
+terraform apply -auto-approve  # New Relic에 배포  
 
 
 
