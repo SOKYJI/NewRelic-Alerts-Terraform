@@ -3,8 +3,14 @@ resource "newrelic_nrql_alert_condition" "vpn_connection_down" {
   policy_id = var.policy_id
   name      = "ConnectionDown 발생"
 
+  expiration_duration            = 600
+  close_violations_on_expiration = true
+  open_violation_on_expiration   = false
+  ignore_on_expected_termination = false
+  violation_time_limit_seconds   = 86400
+
   nrql {
-    query = "FROM Metric SELECT min(aws.vpn.TunnelState) FACET aws.vpn.VpnId WITH TIMEZONE 'Asia/Seoul'"
+    query = "FROM Metric SELECT max(aws.vpn.TunnelState) FACET aws.vpn.VpnId WITH TIMEZONE 'Asia/Seoul'"
   }
 
   critical {
@@ -19,6 +25,12 @@ resource "newrelic_nrql_alert_condition" "vpn_connection_down" {
 resource "newrelic_nrql_alert_condition" "vpn_tunnel_down" {
   policy_id = var.policy_id
   name      = "TunnelDown 발생"
+
+  expiration_duration            = 600
+  close_violations_on_expiration = true
+  open_violation_on_expiration   = false
+  ignore_on_expected_termination = false
+  violation_time_limit_seconds   = 86400
 
   nrql {
     query = "FROM Metric SELECT min(aws.vpn.TunnelState) FACET aws.vpn.TunnelIpAddress WITH TIMEZONE 'Asia/Seoul'"

@@ -6,6 +6,7 @@ resource "newrelic_nrql_alert_condition" "ecs_cluster_cpu" {
   close_violations_on_expiration = true
   open_violation_on_expiration   = false
   ignore_on_expected_termination = false
+  violation_time_limit_seconds   = 86400
 
   nrql {
     query = "FROM Metric SELECT average(aws.ecs.CPUUtilization.byCluster) FACET aws.ecs.ClusterName WITH TIMEZONE 'Asia/Seoul'"
@@ -27,6 +28,7 @@ resource "newrelic_nrql_alert_condition" "ecs_cluster_mem" {
   close_violations_on_expiration = true
   open_violation_on_expiration   = false
   ignore_on_expected_termination = false
+  violation_time_limit_seconds   = 86400
 
   nrql {
     query = "FROM Metric SELECT average(aws.ecs.MemoryUtilization.byCluster) FACET aws.ecs.ClusterName WITH TIMEZONE 'Asia/Seoul'"
@@ -48,6 +50,7 @@ resource "newrelic_nrql_alert_condition" "ecs_service_cpu" {
   close_violations_on_expiration = true
   open_violation_on_expiration   = false
   ignore_on_expected_termination = false
+  violation_time_limit_seconds   = 86400
 
   nrql {
     query = "FROM Metric SELECT average(aws.ecs.CPUUtilization.byService) FACET aws.ecs.ServiceName WITH TIMEZONE 'Asia/Seoul'"
@@ -69,6 +72,7 @@ resource "newrelic_nrql_alert_condition" "ecs_service_mem" {
   close_violations_on_expiration = true
   open_violation_on_expiration   = false
   ignore_on_expected_termination = false
+  violation_time_limit_seconds   = 86400
 
   nrql {
     query = "FROM Metric SELECT average(aws.ecs.MemoryUtilization.byService) FACET aws.ecs.ServiceName WITH TIMEZONE 'Asia/Seoul'"

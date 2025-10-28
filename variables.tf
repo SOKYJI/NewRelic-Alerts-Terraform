@@ -29,5 +29,6 @@ variable "policy_names" {
     rds         = "RDS"
     vpn         = "Site-to-Site VPN"
     tgw         = "TGW"
+    eks         = "EKS"
   }
 }

@@ -7,6 +7,7 @@ resource "newrelic_nrql_alert_condition" "ec2_cpu_systemsample" {
   close_violations_on_expiration = true
   open_violation_on_expiration   = false
   ignore_on_expected_termination = false
+  violation_time_limit_seconds   = 86400
 
   nrql {
     query = "FROM SystemSample SELECT average(cpuPercent) FACET entityName WITH TIMEZONE 'Asia/Seoul'"
@@ -29,6 +30,7 @@ resource "newrelic_nrql_alert_condition" "ec2_cpu_metric" {
   close_violations_on_expiration = true
   open_violation_on_expiration   = false
   ignore_on_expected_termination = false
+  violation_time_limit_seconds   = 86400
   
   nrql {
     query = "FROM Metric SELECT average(aws.ec2.CPUUtilization) FACET entity.name WITH TIMEZONE 'Asia/Seoul'"
@@ -51,6 +53,7 @@ resource "newrelic_nrql_alert_condition" "ec2_memory_systemsample" {
   close_violations_on_expiration = true
   open_violation_on_expiration   = false
   ignore_on_expected_termination = false
+  violation_time_limit_seconds   = 86400
   
   nrql {
     query = "FROM SystemSample SELECT average(memoryUsedPercent) FACET entityName WITH TIMEZONE 'Asia/Seoul'"
@@ -73,6 +76,7 @@ resource "newrelic_nrql_alert_condition" "ec2_disk_storagesample" {
   close_violations_on_expiration = true
   open_violation_on_expiration   = false
   ignore_on_expected_termination = false
+  violation_time_limit_seconds   = 86400
   
   nrql {
     query = "FROM StorageSample SELECT average(diskUsedPercent) FACET entityName, device WITH TIMEZONE 'Asia/Seoul'"
@@ -95,6 +99,7 @@ resource "newrelic_nrql_alert_condition" "ec2_status_check_failed" {
   close_violations_on_expiration = true
   open_violation_on_expiration   = false
   ignore_on_expected_termination = false
+  violation_time_limit_seconds   = 86400
   
   nrql {
     query = "FROM Metric SELECT max(aws.ec2.StatusCheckFailed) FACET entity.name WITH TIMEZONE 'Asia/Seoul'"
@@ -117,6 +122,7 @@ resource "newrelic_nrql_alert_condition" "ec2_system_check_failed" {
   close_violations_on_expiration = true
   open_violation_on_expiration   = false
   ignore_on_expected_termination = false
+  violation_time_limit_seconds   = 86400
   
   nrql {
     query = "FROM Metric SELECT max(aws.ec2.StatusCheckFailed_System) FACET entity.name WITH TIMEZONE 'Asia/Seoul'"
@@ -139,6 +145,7 @@ resource "newrelic_nrql_alert_condition" "ec2_instance_check_failed" {
   close_violations_on_expiration = true
   open_violation_on_expiration   = false
   ignore_on_expected_termination = false
+  violation_time_limit_seconds   = 86400
   
   nrql {
     query = "FROM Metric SELECT max(aws.ec2.StatusCheckFailed_Instance) FACET entity.name WITH TIMEZONE 'Asia/Seoul'"
@@ -161,6 +168,7 @@ resource "newrelic_nrql_alert_condition" "ec2_ebs_check_failed" {
   close_violations_on_expiration = true
   open_violation_on_expiration   = false
   ignore_on_expected_termination = false
+  violation_time_limit_seconds   = 86400
   
   nrql {
     query = "FROM Metric SELECT max(aws.ec2.StatusCheckFailed_AttachedEBS) FACET entity.name WITH TIMEZONE 'Asia/Seoul'"
@@ -183,6 +191,7 @@ resource "newrelic_nrql_alert_condition" "ec2_host_status" {
   close_violations_on_expiration = true
   open_violation_on_expiration   = false
   ignore_on_expected_termination = false
+  violation_time_limit_seconds   = 86400
   
   nrql {
     query = "FROM Metric SELECT uniqueCount(host.state) FACET entity.name WITH TIMEZONE 'Asia/Seoul'"

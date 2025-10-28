@@ -7,6 +7,7 @@ resource "newrelic_nrql_alert_condition" "nlb_unhealthy_host" {
   close_violations_on_expiration = true
   open_violation_on_expiration   = false
   ignore_on_expected_termination = false
+  violation_time_limit_seconds   = 86400
 
   nrql {
     query = "FROM Metric SELECT max(aws.networkelb.UnHealthyHostCount) FACET aws.networkelb.TargetGroup WITH TIMEZONE 'Asia/Seoul' WHERE aws.networkelb.AvailabilityZone is NULL"
@@ -29,6 +30,7 @@ resource "newrelic_nrql_alert_condition" "nlb_no_healthy_host" {
   close_violations_on_expiration = true
   open_violation_on_expiration   = false
   ignore_on_expected_termination = false
+  violation_time_limit_seconds   = 86400
 
   nrql {
     query = "FROM Metric SELECT min(aws.networkelb.HealthyHostCount) FACET aws.networkelb.TargetGroup WITH TIMEZONE 'Asia/Seoul' WHERE aws.networkelb.AvailabilityZone is NULL"
@@ -51,6 +53,7 @@ resource "newrelic_nrql_alert_condition" "nlb_port_alloc_error" {
   close_violations_on_expiration = true
   open_violation_on_expiration   = false
   ignore_on_expected_termination = false
+  violation_time_limit_seconds   = 86400
 
   nrql {
     query = "FROM Metric SELECT sum(aws.networkelb.PortAllocationErrorCount) FACET entity.name WITH TIMEZONE 'Asia/Seoul' WHERE aws.networkelb.AvailabilityZone is NOT NULL"

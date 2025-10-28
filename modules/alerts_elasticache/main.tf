@@ -6,6 +6,7 @@ resource "newrelic_nrql_alert_condition" "ec_cpu" {
   close_violations_on_expiration = true
   open_violation_on_expiration   = false
   ignore_on_expected_termination = false
+  violation_time_limit_seconds   = 86400
 
   nrql {
     query = "FROM Metric SELECT average(aws.elasticache.CPUUtilization) FACET aws.elasticache.CacheClusterId WITH TIMEZONE 'Asia/Seoul'"
@@ -27,6 +28,7 @@ resource "newrelic_nrql_alert_condition" "ec_freeable_memory" {
   close_violations_on_expiration = true
   open_violation_on_expiration   = false
   ignore_on_expected_termination = false
+  violation_time_limit_seconds   = 86400
 
   nrql {
     query = "FROM Metric SELECT average(aws.elasticache.FreeableMemory) FACET aws.elasticache.CacheClusterId WITH TIMEZONE 'Asia/Seoul'"
@@ -48,6 +50,7 @@ resource "newrelic_nrql_alert_condition" "ec_swap_usage" {
   close_violations_on_expiration = true
   open_violation_on_expiration   = false
   ignore_on_expected_termination = false
+  violation_time_limit_seconds   = 86400
 
   nrql {
     query = "FROM Metric SELECT average(aws.elasticache.SwapUsage) FACET aws.elasticache.CacheClusterId WITH TIMEZONE 'Asia/Seoul'"
@@ -69,6 +72,7 @@ resource "newrelic_nrql_alert_condition" "ec_evictions" {
   close_violations_on_expiration = true
   open_violation_on_expiration   = false
   ignore_on_expected_termination = false
+  violation_time_limit_seconds   = 86400
 
   nrql {
     query = "FROM Metric SELECT average(aws.elasticache.Evictions) FACET aws.elasticache.CacheClusterId WITH TIMEZONE 'Asia/Seoul'"
@@ -90,6 +94,7 @@ resource "newrelic_nrql_alert_condition" "ec_connections" {
   close_violations_on_expiration = true
   open_violation_on_expiration   = false
   ignore_on_expected_termination = false
+  violation_time_limit_seconds   = 86400
 
   nrql {
     query = "FROM Metric SELECT average(aws.elasticache.CurrConnections) FACET aws.elasticache.CacheClusterId WITH TIMEZONE 'Asia/Seoul'"
@@ -111,6 +116,7 @@ resource "newrelic_nrql_alert_condition" "ec_engine_cpu" {
   close_violations_on_expiration = true
   open_violation_on_expiration   = false
   ignore_on_expected_termination = false
+  violation_time_limit_seconds   = 86400
 
   nrql {
     query = "FROM Metric SELECT average(aws.elasticache.EngineCPUUtilization) FACET aws.elasticache.CacheClusterId WITH TIMEZONE 'Asia/Seoul'"

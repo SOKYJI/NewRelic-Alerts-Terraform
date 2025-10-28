@@ -19,6 +19,7 @@ provider "newrelic" {
 resource "newrelic_alert_policy" "policies" {
   for_each = toset(var.enabled_modules)
   name     = var.policy_names[each.key]   # EC2, ALB, VPN 같은 이름 자동 생성
+  incident_preference = "PER_CONDITION"
 }
 
 module "alerts_ec2" {
@@ -79,4 +80,10 @@ module "alerts_tgw" {
   source    = "./modules/alerts_tgw"
   count     = contains(var.enabled_modules, "tgw") ? 1 : 0
   policy_id = newrelic_alert_policy.policies["tgw"].id
+}
+
+module "alerts_eks" {
+  source    = "./modules/alerts_eks"
+  count     = contains(var.enabled_modules, "eks") ? 1 : 0
+  policy_id = newrelic_alert_policy.policies["eks"].id
 }

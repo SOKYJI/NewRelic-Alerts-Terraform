@@ -6,6 +6,7 @@ resource "newrelic_nrql_alert_condition" "alb_4xx_count" {
   close_violations_on_expiration = true
   open_violation_on_expiration   = false
   ignore_on_expected_termination = false
+  violation_time_limit_seconds   = 86400
 
   nrql {
     query = "FROM Metric SELECT sum(aws.applicationelb.HTTPCode_ELB_4XX_Count) FACET entity.name WITH TIMEZONE 'Asia/Seoul' WHERE aws.applicationelb.AvailabilityZone is NULL"
@@ -27,6 +28,7 @@ resource "newrelic_nrql_alert_condition" "alb_5xx_count" {
   close_violations_on_expiration = true
   open_violation_on_expiration   = false
   ignore_on_expected_termination = false
+  violation_time_limit_seconds   = 86400
 
   nrql {
     query = "FROM Metric SELECT sum(aws.applicationelb.HTTPCode_ELB_5XX_Count) FACET entity.name WITH TIMEZONE 'Asia/Seoul' WHERE aws.applicationelb.AvailabilityZone is NULL"
@@ -48,6 +50,7 @@ resource "newrelic_nrql_alert_condition" "alb_TargetResponseTime" {
   close_violations_on_expiration = true
   open_violation_on_expiration   = false
   ignore_on_expected_termination = false
+  violation_time_limit_seconds   = 86400
 
   nrql {
     query = "FROM Metric SELECT average(aws.applicationelb.TargetResponseTime) FACET aws.applicationelb.TargetGroup WITH TIMEZONE 'Asia/Seoul'"
@@ -69,6 +72,7 @@ resource "newrelic_nrql_alert_condition" "alb_no_healthyhost" {
   close_violations_on_expiration = true
   open_violation_on_expiration   = false
   ignore_on_expected_termination = false
+  violation_time_limit_seconds   = 86400
 
   nrql {
     query = "FROM Metric SELECT min(aws.applicationelb.HealthyHostCount) FACET aws.applicationelb.TargetGroup WITH TIMEZONE 'Asia/Seoul' WHERE aws.applicationelb.AvailabilityZone is NULL"
@@ -90,6 +94,7 @@ resource "newrelic_nrql_alert_condition" "alb_unhealthy_hostcount" {
   close_violations_on_expiration = true
   open_violation_on_expiration   = false
   ignore_on_expected_termination = false
+  violation_time_limit_seconds   = 86400
 
   nrql {
     query = "FROM Metric SELECT max(aws.applicationelb.UnHealthyHostCount) FACET aws.applicationelb.TargetGroup WITH TIMEZONE 'Asia/Seoul' WHERE aws.applicationelb.AvailabilityZone is NULL"

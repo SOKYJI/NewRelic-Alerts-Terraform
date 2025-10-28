@@ -6,6 +6,7 @@ resource "newrelic_nrql_alert_condition" "natgw_packets_drop" {
   close_violations_on_expiration = true
   open_violation_on_expiration   = false
   ignore_on_expected_termination = false
+  violation_time_limit_seconds   = 86400
 
   nrql {
     query = "FROM Metric SELECT sum(aws.natgateway.PacketsDropCount) FACET aws.natgateway.NatGatewayId WITH TIMEZONE 'Asia/Seoul'"
@@ -27,6 +28,7 @@ resource "newrelic_nrql_alert_condition" "natgw_error_port_alloc" {
   close_violations_on_expiration = true
   open_violation_on_expiration   = false
   ignore_on_expected_termination = false
+  violation_time_limit_seconds   = 86400
 
   nrql {
     query = "FROM Metric SELECT sum(aws.natgateway.ErrorPortAllocation) FACET aws.natgateway.NatGatewayId WITH TIMEZONE 'Asia/Seoul'"
